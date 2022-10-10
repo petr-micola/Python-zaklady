@@ -158,3 +158,39 @@ funkční kód, tím lepší).
 3. Vytvořte funkci, která vygeneruje náhodná hesla pro počet osob zadaný v parametru tak, aby heslo začínalo
    3 velkými písmeny, pokračovalo 3 malými písmeny, jedním speciálním znakem (-/+*) a končilo 3 náhodnými číslicemi.
 '''
+
+from unidecode import unidecode
+
+datum = '12. 10. 2020'
+print(datum.replace('. ', '-'))
+
+souslovi = 'To je proměnná v Pythonu'
+
+
+def camelcase(text):
+    prevod = ''.join(slovo[0].upper() + slovo[1:].lower() for slovo in text)
+    return prevod[0].lower() + prevod[1:]
+
+
+print(unidecode(souslovi.replace(' ', '_').lower()), unidecode(camelcase(souslovi.split())))
+
+import string
+import random
+
+
+def generuj(pocet):
+    hesla = []
+    for i in range(pocet):
+        heslo = ""
+        for j in range(3):
+            heslo += random.choice(string.ascii_uppercase)
+        for j in range(3):
+            heslo += random.choice(string.ascii_lowercase)
+        heslo += random.choice(string.punctuation)
+        for j in range(3):
+            heslo += random.choice(string.digits)
+        hesla.append(heslo)
+    return hesla
+
+
+print(generuj(3))
